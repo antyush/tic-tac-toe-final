@@ -10,9 +10,9 @@ class GameData:
     # games = None
 
     def __init__(self) -> None:
-        self.path = "gamedata.csv"
+        self.path = "log.csv"
         try:
-            with open("gamedata.csv"):
+            with open("log.csv"):
                 self.games = pd.read_csv(self.path, index_col=0)
         except FileNotFoundError:
             self.games = pd.DataFrame(
@@ -28,7 +28,7 @@ class GameData:
     def add_game(self, game_id, player_1, player_2):
         self.games = self.games.append(
             {"game_id": game_id, "player_1": player_1, "player_2": player_2},
-            ignore_index=True,
+            ignore_index=True
         )
         self.save()
 
@@ -58,8 +58,9 @@ class Game:
             [ None, None, None],
             [None, None, None]]
         self.db = GameData()
-
-        #ask the user for single or multiplayer
+       # self.db.add_game(
+       #     self.game_id, self.player_1, 
+       # )
 
     def game_type(self, type_of_game):
         # print(type(type_of_game))
