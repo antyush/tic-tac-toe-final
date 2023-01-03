@@ -3,8 +3,9 @@
 
 import random
 import pandas as pd
-
-class GameData:
+import uuid
+import datalog
+""" class GameData:
 
     # path = None
     # games = None
@@ -42,7 +43,7 @@ class GameData:
         self.games.loc[self.games["game_id"] == game_id, "winner"] = winner
         self.save()
         return True
-
+ """
 
 class Game:
 
@@ -51,17 +52,16 @@ class Game:
     winner = None
     type = None
     bot = None
+    games = None
 
     def __init__(self): # what to do at the start of the program
         # initalize an empty board
         self.board = [[None, None, None],
             [ None, None, None],
             [None, None, None]]
-        self.db = GameData()
-       # self.db.add_game(
-       #     self.game_id, self.player_1, 
-       # )
-
+        self.id = uuid.uuid1()
+        self.count = 0
+    
     def game_type(self, type_of_game):
         # print(type(type_of_game))
         if type_of_game == '1':
@@ -128,6 +128,8 @@ class Game:
         if (x >= 1 or x <= 3) and (y >= 1 or y <= 3) and (self.board[x-1][y-1] == None):
             self.board[x - 1][y - 1] = self.bot # place character here
             self.print_board()
+            self.count = self.count + 1
+            datalog.enterMove(self.id,self.count,self.bot,[x,y])
             return(self.board)
         else:
             self.bot_action()

@@ -1,0 +1,45 @@
+<!-- play.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tic-Tac-Toe-GUI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Tic-Tac-Toe</h1>
+  <table>
+    <tr>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+    </tr>
+    <tr>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+    </tr>
+    <tr>
+      <td><button></button></td>
+      <td><button></button></td>
+      <td><button></button></td>
+    </tr>
+  </table>
+
+  <script>
+    
+    // select all of the buttons in the table
+    const buttons = document.querySelectorAll('button - table');
+
+    // adding click event listener for each of the buttons
+    buttons.forEach((button) => { 
+        
+        button.addEventListener('click', (event) => {
+
+        if (event.target.innerText === '') { // is button empty
+          event.target.innerText = 'X';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
